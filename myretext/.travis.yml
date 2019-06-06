@@ -1,0 +1,15 @@
+sudo: false
+language: python
+python:
+  - "3.5"
+  - "3.6"
+addons:
+  apt:
+    packages:
+    - libegl1-mesa
+install:
+  - pip install "PyQt5!=5.10" Markdown docutils pyflakes
+  - pip install git+https://github.com/retext-project/pymarkups.git
+script:
+  - xvfb-run -a -s "-screen 0 1024x768x24" python setup.py test
+  - python -m pyflakes ReText/*.py retext.py setup.py
